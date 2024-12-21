@@ -7,6 +7,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -19,6 +20,7 @@ import java.time.format.DateTimeFormatter;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.$;
 import static java.time.Duration.ofSeconds;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CardDeliveryTest {
 
@@ -30,15 +32,17 @@ class CardDeliveryTest {
 
     void shouldSendFormIfDataValid() {
         Selenide.open("http://localhost:9999");
-        $("[data-test-id='city']").setValue("Ярославль");
-
-        $$();
-//        String datePlanning = generateDate(4, "dd.MM.yyy");
-        $("[data-test-id='name']").setValue("Иванов Иван");
-        $("[data-test-id='phone']").setValue("+79051369202");
+        $("[data-test-id='city'] input").setValue("Уфа");
+//        $("[data-test-id='date']").press(Keys.chord(Keys.CONTROL, "a"));
+//        $("[data-test-id='date']").press(Keys.BACK_SPACE);
+        String datePlanning = generateDate(4, "dd.MM.yyy");
+        $("[data-test-id='date'] input").setValue(datePlanning);
+        $("[data-test-id='name'] input").setValue("Иванов Иван");
+        $("[data-test-id='phone'] input").setValue("+79051369202");
         $("[data-test-id='agreement']").click();
         $(".button__content").click();
-        WebElement result = $("[data-test-id='notification']").should(Condition.visible, ofSeconds(15));
+        WebElement result = $("[data-test-id='notification']").shouldBe(Condition.visible, ofSeconds(15));
+        assertTrue(result.isDisplayed());
 
 
 
