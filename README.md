@@ -1,0 +1,1 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/8cb0uvf7ot4isfde?svg=true)](https://ci.appveyor.com/project/IanaPopova/netologyselenide)

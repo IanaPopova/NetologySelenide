@@ -22,27 +22,8 @@ import static java.time.Duration.ofSeconds;
 
 class CardDeliveryTest {
 
-    private WebDriver driver;
-
-    @BeforeEach
-    void setUp() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--no-sandbox");
-        options.addArguments("--headless");
-        driver = new ChromeDriver(options);
-        driver.get("http://localhost:9999");
-    }
-
-    @AfterEach
-    void tearDown() {
-        driver.quit();
-        driver = null;
-    }
-
     public String generateDate(int days, String pattern) {
         return LocalDate.now().plusDays(days).format(DateTimeFormatter.ofPattern(pattern));
-
     }
 
     @Test
