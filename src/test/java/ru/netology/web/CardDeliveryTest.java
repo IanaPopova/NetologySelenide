@@ -31,7 +31,7 @@ class CardDeliveryTest {
     void shouldSendFormIfDataValid() {
         Selenide.open("http://localhost:9999");
         $("[data-test-id='city'] input").setValue("Уфа");
-        $("[data-test-id='date'] input").press(Keys.chord(Keys.CONTROL, "a"));
+        $("[data-test-id='date'] input").press(Keys.chord(Keys.SHIFT, Keys.HOME));
         $("[data-test-id='date'] input").press(Keys.BACK_SPACE);
         String datePlanning = generateDate(4, "dd.MM.yyy");
         $("[data-test-id='date'] input").setValue(datePlanning);
